@@ -1,64 +1,85 @@
 # CascadiaGame
 
-Projet Java de simulation du jeu Cascadia (mode terminal et mode graphique), avec gestion du score, scenarios et succes.
+Simulation Java du jeu Cascadia avec interface terminal et interface graphique.
 
-## 1. Contenu du projet
+## Resume
 
-Le code principal est situe dans:
+Ce projet implemente les mecaniques principales du jeu Cascadia: placement de tuiles habitats, gestion des jetons animaux, scoring selon cartes de score, et gestion de scenarios/succes.
 
-- `CascadiaGame-main/src/`
-- `CascadiaGame-main/build.xml`
-- `CascadiaGame-main/lib/` (dependances)
-- `CascadiaGame-main/data/` et `CascadiaGame-main/hex/` (ressources visuelles)
+## Fonctionnalites
 
-## 2. Fonctionnalites
+- Partie multi-joueurs.
+- Variantes de score pour les animaux.
+- Gestion des habitats et connexites.
+- Mode terminal pour tests rapides.
+- Mode graphique pour jeu interactif.
+- Scenarios et systeme de succes.
 
-- Jeu de 1 a 4 joueurs.
-- Tuiles carrees et tuiles hexagonales.
-- Choix de variantes de score.
-- Mode terminal et mode graphique.
-- Gestion de succes/scenarios.
+## Structure du projet
 
-## 3. Prerequis
+```text
+src/fr/uge/cascadia/
+	animal/        # jetons, types, cartes animaux
+	board/         # plateau, shelf, placement
+	controller/    # logique de controle terminal/graphique
+	score/         # strategies de scoring
+	success/       # gestion des succes/scenarios
+	tile/          # definitions des tuiles
+	view/          # rendu graphique
 
-- JDK 23 (le build Ant active `--enable-preview -source 23`).
+data/            # ressources images animales
+hex/             # ressources tuiles hexagonales
+docs/doc/        # javadocs generees
+build.xml        # build Ant
+```
+
+## Prerequis
+
+- Java JDK 23 (preview active dans le build Ant).
 - Apache Ant.
-- Bibliotheque `zen-6.0.jar` dans `CascadiaGame-main/lib/`.
+- Bibliotheque `lib/zen-6.0.jar`.
 
-## 4. Installation
-
-```bash
-cd CascadiaGame/CascadiaGame-main
-ant compile
-ant jar
-```
-
-## 5. Lancement
-
-```bash
-java -jar Cascadia.jar
-```
-
-## 6. Commandes utiles
+## Build
 
 ```bash
 ant clean
 ant compile
 ant jar
+```
+
+Jar genere: `Cascadia.jar`
+
+## Lancement
+
+```bash
+java -jar Cascadia.jar
+```
+
+## Documentation technique
+
+Generer la javadoc:
+
+```bash
 ant javadoc
 ```
 
-## 7. Organisation technique
+Sortie dans `docs/doc/`.
 
-Paquets principaux:
+## Donnees et fichiers utiles
 
-- `fr.uge.cascadia`: logique jeu
-- `fr.uge.cascadia.board`: plateau et placement
-- `fr.uge.cascadia.cachroller`: controleurs
-- `fr.uge.cascadia.score`: calcul des scores
-- `fr.uge.cascadia.view`: rendu graphique
+- `Scenarios.txt`: definition des scenarios.
+- `successNormal.txt`: succes standards.
+- `initialTiles.txt`: tuiles de depart.
+- `hexagoTilesFile.txt`: configurations hexagonales.
 
-## 8. Points d'attention
+## Limitations connues
 
-- Le projet depend du JDK 23 preview.
-- Le nom du package `cachroller` semble volontaire dans le code; ne pas renommer sans refactor global.
+- Le build depend de `--enable-preview` et `-source 23`.
+- Projet pense pour environnement Java desktop (pas web).
+
+## Pistes d'amelioration
+
+- Ajout de tests unitaires systematiques.
+- Sauvegarde/reprise de partie.
+- IA de suggestion de coups.
+- Packaging multiplateforme.
